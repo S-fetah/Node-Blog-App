@@ -31,6 +31,7 @@ const checkLooged = (req, res, next) => {
   }
   res.redirect("/dashboard");
 };
+
 router.get("/admin", checkLooged, (req, res) => {
   try {
     const locals = {
@@ -182,7 +183,7 @@ router.post("/add-post", authMiddleware, async (req, res) => {
     if (!newPost) {
       return res.status(401).send("POST Has Not Been added !");
     }
-    return res.status(201).send("POST Created Successfully");
+    return res.status(201).redirect("/");
   } catch (error) {
     return res
       .status(501)
